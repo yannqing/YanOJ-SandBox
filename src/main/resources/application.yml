@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: yanoj-code-sandbox
+
+server:
+  port: 8080
