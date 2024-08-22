@@ -7,7 +7,7 @@ package com.yannqing.yanojcodesandbox.service;
  **/
 public interface DockerService {
 
-    void createContainer(String image, String name);
+    String createContainer(String image, String name);
 
     void pullImage();
 
