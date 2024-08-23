@@ -1,5 +1,9 @@
 package com.yannqing.yanojcodesandbox.service;
 
+import com.yannqing.yanojcodesandbox.model.ExecuteMessage;
+
+import java.util.List;
+
 /**
  * @description: 操作docker的业务代码
  * @author: yannqing
@@ -7,7 +11,9 @@ package com.yannqing.yanojcodesandbox.service;
  **/
 public interface DockerService {
 
-    String createContainer(String image, String name);
+    String createContainer(String name, String userCodeParentPath);
+
+    List<ExecuteMessage> execContainer(String containerId, List<String> inputList);
 
     void pullImage();
 

@@ -30,13 +30,17 @@ public class DockerController {
         return "xxx";
     }
     @PostMapping("/create")
-    public String createContainer(String image, String name) {
+    public String createContainer(String name) {
 
-        String containerId = dockerService.createContainer(image, name);
+        String containerId = dockerService.createContainer(name, "/tmpCode");
 
 
         return containerId;
     }
 
+    @PostMapping("/test")
+    public String testContainer(String name) {
+
+    }
 
 }
