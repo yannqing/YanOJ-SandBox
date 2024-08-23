@@ -89,7 +89,9 @@ public class JavaDockerCodeSandbox implements CodeSandBox {
         }
         //
         String userCodeParentPath = globalCodePathName + File.separator + UUID.randomUUID();
+        System.out.println("userCodeParentPath: " + userCodeParentPath);
         String userCodePath = userCodeParentPath + File.separator + GLOBAL_JAVA_CLASS_NAME;
+        System.out.println("userCodePath: " + userCodePath);
         File userCodeFile = FileUtil.writeString(code, userCodePath, StandardCharsets.UTF_8);
 
         // 2. 编译代码，得到 class 文件
