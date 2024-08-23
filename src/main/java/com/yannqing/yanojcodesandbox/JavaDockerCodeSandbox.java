@@ -133,7 +133,7 @@ public class JavaDockerCodeSandbox implements CodeSandBox {
         List<ExecuteMessage> executeMessageList = new ArrayList<>();
         for (String inputArgs : inputList) {
             String[] inputArgsArray = inputArgs.split(" ");
-            String[] cmdArray = ArrayUtil.append(new String[]{"java", "-cp", "/app", "Main"}, inputArgsArray);
+            String[] cmdArray = ArrayUtil.append(new String[]{"java", "-cp", "/yannqing/yanojsandbox", "Main"}, inputArgsArray);
             ExecCreateCmdResponse execCreateCmdResponse = dockerClient.execCreateCmd(containerId)
                     .withCmd(cmdArray)
                     .withAttachStderr(true)

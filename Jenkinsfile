@@ -47,7 +47,7 @@ pipeline {
             steps {
                 // 基于 Dockerfile 进行构建
                 sh "docker build -f Dockerfile.dockerfile -t yanojsandbox:latest ."
-                sh "docker run -it --name sandbox -v yanojsandbox:/yannqing/yanojsandbox -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -p 8091:8080 -d yanojsandbox:latest"
+                sh "docker run -it --name sandbox -v /yannqing/sandbox:/yannqing/sandbox -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -p 8091:8080 -d yanojsandbox:latest"
             }
         }
     }
