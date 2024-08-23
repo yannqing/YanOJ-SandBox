@@ -82,6 +82,7 @@ public class JavaDockerCodeSandbox implements CodeSandBox {
 
         String userDir = System.getProperty("user.dir");
         String globalCodePathName = userDir + File.separator + GLOBAL_CODE_DIR_NAME;
+        System.out.println("globalCodePathName: " + globalCodePathName);
         // 1、保存代码文件
         if (!FileUtil.exist(globalCodePathName)) {
             FileUtil.mkdir(globalCodePathName);
@@ -203,10 +204,10 @@ public class JavaDockerCodeSandbox implements CodeSandBox {
         executeCodeResponse.setJudgeInfo(judgeInfo);
 
         // 5. 文件清理
-        if (userCodeFile.getParentFile() != null) {
-            boolean del = FileUtil.del(userCodeParentPath);
-            System.out.println("删除" + (del ? "成功" : "失败"));
-        }
+//        if (userCodeFile.getParentFile() != null) {
+//            boolean del = FileUtil.del(userCodeParentPath);
+//            System.out.println("删除" + (del ? "成功" : "失败"));
+//        }
         return null;
     }
 
