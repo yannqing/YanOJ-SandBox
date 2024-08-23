@@ -111,7 +111,7 @@ public class JavaDockerCodeSandbox implements CodeSandBox {
         hostConfig.withMemorySwap(0L);
         hostConfig.withCpuCount(1L);                    // 指定分配的 CPU 为 1
         // 设置挂载
-        hostConfig.setBinds(new Bind("/yannqing/sandbox", new Volume("/yannqing/yanojsandbox")));
+        hostConfig.setBinds(new Bind("/yannqing/sandbox", new Volume("/yannqing/sandbox")));
 
         // 构建创建容器命令
         CreateContainerCmd createContainerCmd = dockerClient
@@ -133,7 +133,7 @@ public class JavaDockerCodeSandbox implements CodeSandBox {
         List<ExecuteMessage> executeMessageList = new ArrayList<>();
         for (String inputArgs : inputList) {
             String[] inputArgsArray = inputArgs.split(" ");
-            String[] cmdArray = ArrayUtil.append(new String[]{"java", "-cp", "/yannqing/yanojsandbox", "Main"}, inputArgsArray);
+            String[] cmdArray = ArrayUtil.append(new String[]{"java", "-cp", userCodeParentPath, "Main"}, inputArgsArray);
             ExecCreateCmdResponse execCreateCmdResponse = dockerClient.execCreateCmd(containerId)
                     .withCmd(cmdArray)
                     .withAttachStderr(true)
