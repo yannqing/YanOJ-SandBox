@@ -111,7 +111,7 @@ public class JavaDockerCodeSandbox implements CodeSandBox {
         hostConfig.withMemorySwap(0L);
         hostConfig.withCpuCount(1L);                    // 指定分配的 CPU 为 1
         // 设置挂载
-        hostConfig.setBinds(new Bind("/var/lib/docker/volumes/jenkins_home/_data/workspace/YanOJ-sandbox/tmpCode", new Volume("/yannqing/yanojsandbox")));
+        hostConfig.setBinds(new Bind("/yannqing/sandbox", new Volume("/yannqing/yanojsandbox")));
 
         // 构建创建容器命令
         CreateContainerCmd createContainerCmd = dockerClient
