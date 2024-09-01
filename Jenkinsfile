@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('拉取代码') {
             steps {
-                git branch: 'master', url: '${GIT_URL}'
+                git branch: 'master', url: GIT_URL
             }
         }
         stage('编译构建') {
