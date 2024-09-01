@@ -5,13 +5,13 @@ pipeline {
         APP_NAME = 'sandbox'
         APP_PROFILE = 'prod'
         APP_IMAGE = 'yanojsandbox:latest'
-        APP_PORT = 81
+        APP_PORT = '8091:8080'
     }
 
     stages {
         stage('拉取代码') {
             steps {
-                git branch: 'master', url: GIT_URL
+                git branch: 'master', url: ${GIT_URL}
             }
         }
         stage('编译构建') {
@@ -32,10 +32,10 @@ pipeline {
                         echo "容器存在"
                         def isRunning = sh(script: 'docker ps --format "{{.Names}}" | grep -q "^${APP_NAME}"', returnStatus: true) == 0
                         if (isRunning) {
-                            sh "docker stop sandbox"
+                            sh "docker stop ${APP_NAME}"
                         }
                         echo "删除容器"
-                        sh "docker rm sandbox"
+                        sh "docker rm ${APP_NAME}"
                     } else {
                         echo "容器不存在"
                     }
@@ -43,7 +43,7 @@ pipeline {
                     // 如果镜像存在，则移除
                     if (imageExists) {
                         echo "删除镜像"
-                        sh "docker rmi yanojsandbox:latest"
+                        sh "docker rmi ${APP_IMAGE}"
                     } else {
                         echo "镜像不存在"
                     }
@@ -53,8 +53,8 @@ pipeline {
         stage('构建镜像，创建并运行容器') {
             steps {
                 // 基于 Dockerfile 进行构建
-                sh "docker build -f Dockerfile.dockerfile -t yanojsandbox:latest ."
-                sh "docker run -it --name sandbox -v /yannqing/sandbox:/yannqing/sandbox -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -p 8091:8080 -d yanojsandbox:latest"
+                sh "docker build -f Dockerfile.dockerfile -t ${APP_IMAGE} ."
+                sh "docker run -it --name ${APP_NAME} -v /yannqing/${APP_NAME}:/yannqing/${APP_NAME} -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -p ${APP_PORT} -d ${APP_IMAGE}"
             }
         }
     }
