@@ -13,5 +13,6 @@ public class ExecuteMessage {
     private Integer exitCode;
     private String message;
     private String errorMessage;
+    private Long memory;
     private long time;
 }

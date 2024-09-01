@@ -1,10 +1,17 @@
 pipeline {
     agent any
+    environment {
+        GIT_URL = 'git@github.com:yannqing/YanOJ-SandBox.git'
+        APP_NAME = 'sandbox'
+        APP_PROFILE = 'prod'
+        APP_IMAGE = 'yanojsandbox:latest'
+        APP_PORT = 81
+    }
 
     stages {
         stage('拉取代码') {
             steps {
-                git branch: 'master', url: 'git@github.com:yannqing/YanOJ-SandBox.git'
+                git branch: 'master', url: '${GIT_URL}'
             }
         }
         stage('编译构建') {
@@ -16,14 +23,14 @@ pipeline {
             steps {
                 script {
                     // 检查容器是否存在
-                    def containerExists = sh(script: 'docker ps -a --format "{{.Names}}" | grep -q "^sandbox"', returnStatus: true) == 0
+                    def containerExists = sh(script: 'docker ps -a --format "{{.Names}}" | grep -q "^${APP_NAME}"', returnStatus: true) == 0
                     // 检查镜像是否存在
-                    def imageExists = sh(script: 'docker images --format "{{.Repository}}:{{.Tag}}" | grep -q "^yanojsandbox:latest$"', returnStatus: true) == 0
+                    def imageExists = sh(script: 'docker images --format "{{.Repository}}:{{.Tag}}" | grep -q "^${APP_IMAGE}$"', returnStatus: true) == 0
 
                     // 如果容器存在，则停止和移除
                     if (containerExists) {
                         echo "容器存在"
-                        def isRunning = sh(script: 'docker ps --format "{{.Names}}" | grep -q "^sandbox"', returnStatus: true) == 0
+                        def isRunning = sh(script: 'docker ps --format "{{.Names}}" | grep -q "^${APP_NAME}"', returnStatus: true) == 0
                         if (isRunning) {
                             sh "docker stop sandbox"
                         }
