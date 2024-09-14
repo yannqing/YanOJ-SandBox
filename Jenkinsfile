@@ -54,7 +54,7 @@ pipeline {
             steps {
                 // 基于 Dockerfile 进行构建
                 sh "docker build -f Dockerfile.dockerfile -t ${APP_IMAGE} ."
-                sh "docker run -it --name ${APP_NAME} -v /yannqing/${APP_NAME}:/yannqing/${APP_NAME} -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -p ${APP_PORT} -d ${APP_IMAGE}"
+                sh "docker run -it --name ${APP_NAME} --network mynetwork -v /yannqing/${APP_NAME}:/yannqing/${APP_NAME} -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -p ${APP_PORT} -d ${APP_IMAGE}"
             }
         }
     }

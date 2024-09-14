@@ -21,6 +21,7 @@ import java.util.UUID;
  * @create: 2024-08-15 10:36
  * @from: <?????yannqing.com>
  **/
+@Deprecated
 public class JavaNativeCodeSandboxOld implements CodeSandBox {
 
     public static final String GLOBAL_CODE_DIR_NAME = "tmpCode";

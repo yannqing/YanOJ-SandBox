@@ -43,6 +43,7 @@ import java.util.concurrent.TimeUnit;
  * @from: <?????yannqing.com>
  **/
 @Component
+@Deprecated
 public class JavaDockerCodeSandboxOld implements CodeSandBox {
 
     @Resource
