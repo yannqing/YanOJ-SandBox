@@ -44,14 +44,6 @@ public class DockerController {
     @Resource
     private JavaNativeCodeSandbox javaNativeCodeSandbox;
 
-
-    @GetMapping("/request")
-    public String request() {
-
-        dockerService.pullImage();
-
-        return "xxx";
-    }
     @PostMapping("/create")
     public String createContainer(String name) {
 
