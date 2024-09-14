@@ -53,22 +53,6 @@ public class DockerController {
         return containerId;
     }
 
-    @PostMapping("/test")
-    public String testContainer(String name) {
-        JavaDockerCodeSandboxOld javaDockerCodeSandboxOld = new JavaDockerCodeSandboxOld();
-        ExecuteCodeRequest executeCodeRequest = new ExecuteCodeRequest();
-        executeCodeRequest.setInputList(Arrays.asList("1 2", "3 4"));
-        String code = ResourceUtil.readStr("testCode/simpleComputeArgs/Main.java", StandardCharsets.UTF_8);
-        log.info("code: {}", code);
-        executeCodeRequest.setCode(code);
-        executeCodeRequest.setLanguage("java");
-
-
-        ExecuteCodeResponse executeCodeResponse = javaDockerCodeSandboxOld.executeCode(executeCodeRequest);
-        System.out.println(executeCodeResponse);
-        return "ok";
-    }
-
     /**
      * 执行代码
      *
