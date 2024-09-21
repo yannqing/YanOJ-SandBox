@@ -1,10 +1,7 @@
 package com.yannqing.yanojcodesandbox.controller;
 
-import cn.hutool.core.io.resource.ResourceUtil;
 import com.yannqing.yanojcodesandbox.JavaDockerCodeSandbox;
-import com.yannqing.yanojcodesandbox.JavaDockerCodeSandboxOld;
 import com.yannqing.yanojcodesandbox.JavaNativeCodeSandbox;
-import com.yannqing.yanojcodesandbox.JavaNativeCodeSandboxOld;
 import com.yannqing.yanojcodesandbox.model.ExecuteCodeRequest;
 import com.yannqing.yanojcodesandbox.model.ExecuteCodeResponse;
 import com.yannqing.yanojcodesandbox.service.DockerService;
@@ -14,9 +11,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 /**
  * @description: 容器视图
@@ -61,6 +55,7 @@ public class DockerController {
      */
     @PostMapping("/executeCode")
     ExecuteCodeResponse executeCode(@RequestBody ExecuteCodeRequest executeCodeRequest, HttpServletRequest request, HttpServletResponse response) {
+        log.debug("ExecuteCodeRequest:{}", executeCodeRequest);
         // 基本的认证
         String authHeader = request.getHeader(AUTH_REQUEST_HEADER);
         if (!AUTH_REQUEST_SECRET.equals(authHeader)) {
