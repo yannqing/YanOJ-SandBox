@@ -46,6 +46,12 @@ public class DockerController {
         return containerId;
     }
 
+    @PostMapping("/test")
+    public String test() {
+
+        return "ok";
+    }
+
     /**
      * 执行代码
      *
