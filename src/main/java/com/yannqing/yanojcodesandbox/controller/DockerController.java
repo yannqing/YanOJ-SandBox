@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
  * @from: <更多资料：yannqing.com>
  **/
 @RestController
-@RequestMapping("/")
 public class DockerController {
 
     // 定义鉴权请求头和密钥
