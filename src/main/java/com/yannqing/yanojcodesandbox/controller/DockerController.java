@@ -46,7 +46,7 @@ public class DockerController {
         return containerId;
     }
 
-    @PostMapping("/test")
+    @GetMapping("/test")
     public String test() {
 
         return "ok";
